@@ -50,7 +50,7 @@ mac$ client_direct_googletts.sh # voice trained with GoogleTTS
 Some source codes from the following libraries are used with modification.
 
 HuBERT: https://github.com/bshall/hubert <br>
-FastSpeech2 and hifigan: https://github.com/ming024/FastSpeech2 <br>
+FastSpeech2 and HiFiGAN: https://github.com/ming024/FastSpeech2 <br>
 
 
 

@@ -1,29 +1,12 @@
 dataset: "rkmt"
 
 path:
-  #corpus_path: "/home/rekimoto/Dropbox/my/data/LJSpeech1.1"
-  #corpus_path: "/home/rekimoto/Dropbox/my/myPython/audio_test/LJlike_normal_command"
-  #lexicon_path: "lexicon/librispeech-lexicon.txt"
-  # この二つしか使わない？
-  #raw_path: "/home/rekimoto/Dropbox/my/data/myvoice/rekimoto/voiced"
   raw_path: "/home/rekimoto/Dropbox/my/data/LJSpeech1.1/wavs"
-  #raw_path: "/home/rekimoto/Dropbox/my/myPython/audio_test/LJlike_normal_command/wavs"
-  #preprocessed_path: "./preprocessed_data/rkmt16k_LJ"
-
-  #preprocessed_path: "./preprocessed_data/LJ_soft_hubert_220708"
-  #hubert_checkpoint_path: "HuBERT/model-best-220708.pt"
-
-  #preprocessed_path: "./preprocessed_data/LJ_hubert_layer7"
-
-  # 2022.7.16
   preprocessed_path: "./preprocessed_data/LJ_hubert_layer12"
   hubert_checkpoint_path: "./HuBERT/model-layer12-450000.pt"
 
-  #hubert_checkpoint_path: "model-best.pt"
-  
-
 preprocessing:
-  val_size: 512 # was 100 # 512 # validation size (全データセット中のvalidtion数)
+  val_size: 512 # validation size
   text:
     text_cleaners: ["unit"]  # was  ["english_cleaners"]  ["tkn"] 
     # layer: 7  # layer number. 0 if use soft unit

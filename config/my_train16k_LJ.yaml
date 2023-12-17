@@ -1,20 +1,4 @@
 path:
-  #ckpt_path: "./output/ckpt/rkmt16k_LJ"
-  #log_path: "./output/log/rkmt16k_LJ"
-  #result_path: "./output/result/rkmt16k_LJ"
-
-  #ckpt_path: "./output/ckpt/LJ_soft_hubert_2022_0706"
-  #log_path: "./output/log/LJ_soft_hubert_2022_0706"
-  #result_path: "./output/result/LJ_soft_hubert_2022_0706"
-
-  #ckpt_path: "./output/ckpt/LJ_hubert_layer7"
-  #log_path: "./output/log/LJ_hubert_layer7"
-  #result_path: "./output/result/LJ_hubert_layer7"
-
-  #ckpt_path: "./output/ckpt/LJ_hubert_unit_2022_0710"
-  #log_path: "./output/log/LJ_hubert_unit_2022_0710"
-  #result_path: "./output/result/LJ_hubert_unit_2022_0710"
-
   ckpt_path: "./output/ckpt/LJ_hubert_layer12"
   log_path: "./output/log/LJ_hubert_layer12"
   result_path: "./output/result/LJ_hubert_layer12"

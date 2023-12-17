@@ -19,7 +19,7 @@ This script converts audio of sample_wishper.wav and saves it to the out.wav fil
 
 ### Converion with GUI:
 
-<img src='demo.png'>
+<img src='demo.png' width=400>
 
 A server-client type GUI demo is provided where the machine with audio input/output and screen (e.g., laptop) and the conversion machine (supporting CUDA) are separate machines. Currently, the client machine is tested only on macos.
 

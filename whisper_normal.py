@@ -29,13 +29,16 @@ import hifigan
 
 
 def load_fastspeech2(configs, checkpoint_path=None, device='cuda'):
+    assert checkpoint_path is not None
     (preprocess_config, model_config) = configs
 
     model = FastSpeech2(preprocess_config, model_config).to(device)
-    if checkpoint_path:
-        print("### loading FastSpeech2", checkpoint_path)
+    print("### loading FastSpeech2", checkpoint_path)
+    if checkpoint_path.startswith("http"):
+        ckpt = torch.hub.load_state_dict_from_url(checkpoint_path, map_location=torch.device('cpu')) if device!='cuda' else torch.hub.load_state_dict_from_url(checkpoint_path)
+    else:
         ckpt = torch.load(checkpoint_path, map_location=torch.device('cpu')) if device!='cuda' else torch.load(checkpoint_path)
-        model.load_state_dict(ckpt["model"], strict=True)
+    model.load_state_dict(ckpt["model"], strict=True)
 
     model = model.to(device)
     model.eval()
@@ -113,29 +116,25 @@ def wav2units(wav, encoder, layer=None, device='cuda'):
     return units
 
 
-def load_hubert_soft(checkpoint_path=None, rank=0, device='cuda'):
-    print("### load_hubert_soft", checkpoint_path, device)
+def load_hubert(checkpoint_path=None, rank=0, device='cuda'):
+    print("### load_hubert", checkpoint_path, device)
     assert checkpoint_path is not None
     print("### loading checkpoint from: ", checkpoint_path)
-    if device != 'cuda':  # cpu or mps
-        hubert = HubertSoft().to(device)
-        checkpoint = torch.load(checkpoint_path, map_location=torch.device('cpu'))
+    if checkpoint_path.startswith("http"):
+        checkpoint = torch.hub.load_state_dict_from_url(checkpoint_path, map_location=torch.device('cpu')) if device!='cuda' else torch.hub.load_state_dict_from_url(checkpoint_path)
     else:
-        hubert = HubertSoft().to(rank)
-        checkpoint = torch.load(checkpoint_path, map_location={"cuda:0": f"cuda:{rank}"})
+        checkpoint = torch.load(checkpoint_path, map_location=torch.device('cpu')) if device!='cuda' else torch.load(checkpoint_path)
+    hubert = HubertSoft().to(device) if device!='cuda' else HubertSoft().to(rank)
 
     checkpoint = checkpoint['hubert'] if checkpoint['hubert'] is not None else checkpoint
     consume_prefix_in_state_dict_if_present(checkpoint, "module.")
 
-    #hubert.load_state_dict(torch.load("hubert_dict.pt"), strict=True)
     hubert.load_state_dict(checkpoint, strict=True)
     hubert.eval().to(device)
-
-    #torch.save(hubert.state_dict(), "hubert_dict.pt")
     return hubert
 
 
-def my_get_vocoder(config, checkpoint_path="./hifigan/g_00205000", device='cuda'):
+def load_hifigan(config, checkpoint_path="./hifigan/g_00205000", device='cuda'):
     name = config["vocoder"]["model"]
     speaker = config["vocoder"]["speaker"]
     assert speaker == 'universal'
@@ -147,8 +146,10 @@ def my_get_vocoder(config, checkpoint_path="./hifigan/g_00205000", device='cuda'
     config = hifigan.AttrDict(config)
     vocoder = hifigan.Generator(config)
     print("### HiFI-GAN ckpt", checkpoint_path)
-
-    ckpt = torch.load(checkpoint_path, map_location=torch.device('cpu')) if device!='cuda' else torch.load(checkpoint_path)
+    if checkpoint_path.startswith("http"):
+        ckpt = torch.hub.load_state_dict_from_url(checkpoint_path, map_location=torch.device('cpu')) if device!='cuda' else torch.hub.load_state_dict_from_url(checkpoint_path)
+    else:
+        ckpt = torch.load(checkpoint_path, map_location=torch.device('cpu')) if device!='cuda' else torch.load(checkpoint_path)
 
     vocoder.load_state_dict(ckpt['generator'])
     vocoder.eval()
@@ -157,7 +158,7 @@ def my_get_vocoder(config, checkpoint_path="./hifigan/g_00205000", device='cuda'
 
     return vocoder
 
-import os
+
 
 class MyWhisper2Normal(object):
     def __init__(self, args, load_encoder=True, load_decoder=True, load_vocoder=True, root=None):
@@ -186,7 +187,7 @@ class MyWhisper2Normal(object):
         
         if load_encoder:
             print("#### loading HuBERT")
-            self.encoder = load_hubert_soft(args.hubert, device=device) # device 
+            self.encoder = load_hubert(args.hubert, device=device) # device 
             print("### HuBERT model", type(self.encoder))
         
         # FastSpeech2 HiFi-GAN
@@ -196,7 +197,7 @@ class MyWhisper2Normal(object):
 
         if load_vocoder:
             print("### loading HiFI GAN")
-            self.vocoder = my_get_vocoder(self.model_config, checkpoint_path=args.hifigan, device=device).eval()
+            self.vocoder = load_hifigan(self.model_config, checkpoint_path=args.hifigan, device=device).eval()
         print("#### Done.")
 
     def test(self, wavfile='sample_whisper.wav', outfile='/tmp/out.wav'):

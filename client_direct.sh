@@ -1,6 +1,3 @@
 #!/bin/bash
-
-# --device cpu  automatically detected
-
-python client_direct.py --server direct --hifigan  hifigan/g_00205000 
+python client_direct.py --server direct --fastspeech2 https://github.com/rkmt/wesper-demo/releases/download/v0.1/lambda_best.tar
 

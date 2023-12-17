@@ -104,19 +104,24 @@ if __name__ == "__main__":
 
     parser.add_argument("--hubert", 
         help="hubert checkpoint path",
-        default="models/hubert/model-layer12-450000.pt"
+        #default="models/hubert/model-layer12-450000.pt"
+        default="https://github.com/rkmt/wesper-demo/releases/download/v0.1/model-layer12-450000.pt",
+
     )
 
     parser.add_argument("--fastspeech2", 
         help="fastspeech2 checkpoint path",
         #default="models/fastspeech2/lambda_best.tar"
-        default="models/fastspeech2/googletts_neutral_best.tar"        
+        #default="models/fastspeech2/googletts_neutral_best.tar"        
+        default="https://github.com/rkmt/wesper-demo/releases/download/v0.1/googletts_neutral_best.tar",
     )
 
     parser.add_argument("--hifigan", 
         help="hifigan checkpoint path",
-        default="./hifigan/g_00205000"
+        #default="./hifigan/g_00205000"
+        default="https://github.com/rkmt/wesper-demo/releases/download/v0.1/g_00205000",
     )
+
 
     args = parser.parse_args()   
 

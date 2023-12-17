@@ -264,32 +264,32 @@ if __name__ == "__main__":
         default = 'config/my_model16000.yaml'
     )
 
-    parser.add_argument("--train_config",
-        default = 'config/my_train16k_LJ.yaml'
-    )
-
     parser.add_argument("--device", 
         default = get_default_device()
     )
 
     parser.add_argument("--port", type=int, default=PORT, help="server port number")
 
-    # for Whisepr2Normal
     parser.add_argument("--hubert", 
         help="hubert checkpoint path",
-        default="models/hubert/model-layer12-450000.pt"
+        #default="models/hubert/model-layer12-450000.pt"
+        default="https://github.com/rkmt/wesper-demo/releases/download/v0.1/model-layer12-450000.pt",
+
     )
 
     parser.add_argument("--fastspeech2", 
         help="fastspeech2 checkpoint path",
-        default="models/fastspeech2/lambda_best.tar"
+        #default="models/fastspeech2/lambda_best.tar"
+        #default="models/fastspeech2/googletts_neutral_best.tar"        
+        default="https://github.com/rkmt/wesper-demo/releases/download/v0.1/googletts_neutral_best.tar",
     )
 
     parser.add_argument("--hifigan", 
         help="hifigan checkpoint path",
-        default='hifigan/g_00205000',
-        #default="./hifigan/g_00180000.zip"
+        #default="./hifigan/g_00205000"
+        default="https://github.com/rkmt/wesper-demo/releases/download/v0.1/g_00205000",
     )
+
 
     parser.add_argument("--sd", 
         help="sounddevice",

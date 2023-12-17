@@ -57,7 +57,6 @@ class ZmqLoop(object):
 def main(args):
     w2n = MyWhisper2Normal(args)
     #w2n = DummyMyWhisper2Normal(args)
-
     zmq_loop = ZmqLoop(w2n, port=args.port)
     zmq_loop.mainloop()
 
@@ -75,24 +74,11 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
 
     parser.add_argument("--preprocess_config",
-        #default = '../../gitdownloads/FastSpeech2/config/LJSpeech/my_preprocess16000.yaml'
-        #default = 'config/LJSpeech/my_preprocess.yaml'
-        #default = 'config/LJSpeech/my_preprocess16k_LJ.yaml'
         default = 'config/my_preprocess16k_LJ.yaml'
     )
 
     parser.add_argument("--model_config",
-        #args.model_config = 'config/LJSpeech/model.yaml'
-        #args.model_config = 'config/LJSpeech/my_model.yaml'
-        #default = '../../gitdownloads/FastSpeech2/config/LJSpeech/my_model16000.yaml'
         default = 'config/my_model16000.yaml'
-    )
-
-    parser.add_argument("--train_config",
-        #default = '../../gitdownloads/FastSpeech2/config/LJSpeech/my_train16000.yaml'
-        #args.train_config = 'config/LJSpeech/my_train.yaml'
-        #args.train_config = 'config/LJSpeech/my_train16k_LJ.yaml'
-        default = 'config/my_train16k_LJ.yaml'
     )
 
     parser.add_argument("--device", 

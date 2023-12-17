@@ -49,9 +49,11 @@ if __name__ == "__main__":
         default = 'config/my_model16000.yaml'
     )
 
+    '''
     parser.add_argument("--train_config",
         default = 'config/my_train16k_LJ.yaml'
     )
+    '''
 
     parser.add_argument("--device", 
         default = get_default_device()

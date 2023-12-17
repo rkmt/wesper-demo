@@ -52,6 +52,24 @@ Some source codes from the following libraries are used with modification.
 HuBERT: https://github.com/bshall/hubert <br>
 FastSpeech2 and HiFiGAN: https://github.com/ming024/FastSpeech2 <br>
 
+# Citation
+```
+@inproceedings{10.1145/3544548.3580706,
+author = {Rekimoto, Jun},
+title = {WESPER: Zero-Shot and Realtime Whisper to Normal Voice Conversion for Whisper-Based Speech Interactions},
+year = {2023},
+isbn = {9781450394215},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3544548.3580706},
+doi = {10.1145/3544548.3580706},
+booktitle = {Proceedings of the 2023 CHI Conference on Human Factors in Computing Systems},
+articleno = {700},
+numpages = {12},
+location = {<conf-loc>, <city>Hamburg</city>, <country>Germany</country>, </conf-loc>},
+series = {CHI '23}
+}
+```
 
 
 

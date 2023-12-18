@@ -28,12 +28,12 @@ HOST$ python server.py [--device {cpu,cuda}] [ --hubert HUBERT-MODEL ]  [ --fast
 CLIENT$ python client.py [--server HOST]
 ```
 
-HOST should support CUDA. CLIENT can be any mchine that supprot tkiner (without CUDA) and audio input/output.  Two machines shold be able to communicate with ssh.
+HOST should support CUDA. CLIENT can be any mchine that supports tkiner (without CUDA) and audio input/output.  Two machines should be able to communicate with ssh.
 
-Connect the CLIENT to the microphone. Audio is recorded only while the 'Record button' is pressed. When the button is released, the voice data is sent to the server (HOST) and the conversion result is played back.
+Connect the CLIENT to the microphone or headset. Audio is recorded only while the 'Record button' is pressed. When the button is released, the voice data is sent to the server (HOST) and the conversion result is played back.
 
 ### GUI without a server
-Direct mode without using a server:
+Direct mode without using a server. 
 
 ```sh
 mac$ python client_direct.py [ --hubert HUBERT-MODEL ]  [ --fastspeech2 FASTSPEECH2-MODEL ]  [ --hifigan  HIFIGAN-MODEL ]

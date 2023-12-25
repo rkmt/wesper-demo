@@ -53,7 +53,7 @@ HuBERT: https://github.com/bshall/hubert <br>
 FastSpeech2 and HiFiGAN: https://github.com/ming024/FastSpeech2 <br>
 
 # Citation
-```
+```bibtex
 @inproceedings{10.1145/3544548.3580706,
 author = {Rekimoto, Jun},
 title = {WESPER: Zero-Shot and Realtime Whisper to Normal Voice Conversion for Whisper-Based Speech Interactions},
@@ -70,6 +70,11 @@ location = {<conf-loc>, <city>Hamburg</city>, <country>Germany</country>, </conf
 series = {CHI '23}
 }
 ```
+
+## Acknowledgements
+
+This work was supported by JST Moonshot R&D Grant Number JPMJMS2012, JST CREST Grant Number JPMJCR17A3, the commissioned research by NICT Japan, and The University of Tokyo Human Augmentation Research Initiative.
+
 
 
 
